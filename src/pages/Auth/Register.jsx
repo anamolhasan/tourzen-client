@@ -1,12 +1,53 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaGithub, FaGoogle, FaTwitter } from 'react-icons/fa'
 import { Link } from 'react-router'
+import { AuthContext } from '../../provider/AuthContext'
 
 const Register = () => {
+	const {createUser, updateUser, setUser} = useContext(AuthContext)
+
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+
+		const from = e.target
+		const fromData = new FormData(from)
+		const {email, password, name, photo} = Object.fromEntries(fromData.entries())
+		
+
+		// create user in the firebase
+		createUser(email,password)
+		  .then((result)=>{
+			const newUser = result.user
+
+			// update user
+			updateUser({
+				displayName:name || '',
+				photoURL:photo || '',
+			})
+			  .then(()=>{
+				setUser({
+					...newUser,
+					displayName:name || '',
+				    photoURL:photo || '',
+				})
+			  })
+			  .catch(error => {
+				console.log("Profile update error:", error)
+				setUser(newUser)
+			  })
+			
+		  })
+		  .catch((error)=>{
+			console.log("Registration error:", error)
+		  })
+
+	}
+
   return (
     <div className="w-full max-w-md mx-auto  my-24 p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-300">
 	<h1 className="text-2xl font-bold text-center">Register</h1>
-	<form noValidate="" action="" className="space-y-6">
+	<form onSubmit={handleSubmit} className="space-y-6">
 
 		<div className="space-y-1 text-sm">
 			<label htmlFor="fullname" className="block dark:text-gray-300">Full Name</label>

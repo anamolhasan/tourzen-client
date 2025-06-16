@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../provider/AuthContext";
 
 const AddPackage = () => {
+
+  const {user} = useContext(AuthContext)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const from = e.target
+    const fromData = new FormData(from)
+    const addPackage = Object.fromEntries(fromData.entries())
+    console.log(addPackage)
+  }
   return (
     <div className="px-4 md:px-24 py-10 bg-white dark:bg-gray-600  text-black  min-h-screen">
       <h2 className="text-3xl font-bold text-center mb-8 text-black">
         🌱 Add Tour Package
       </h2>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           {/** Each input wrapped with dark support */}
           <fieldset className="bg-base-200 dark:bg-gray-800 border border-base-300 dark:border-gray-700 rounded-box p-4">
@@ -106,14 +118,14 @@ const AddPackage = () => {
         {/* Guide Info Preview */}
         <div className="md:col-span-2 flex items-center gap-4 bg-gray-100 dark:bg-gray-900 border text-black dark:text-white p-4 rounded-md">
           <img
-            src=""
+            src={user?.photoURL}
             alt="Guide"
             className="w-16 h-16 rounded-full border-2 border-cyan-900"
           />
 
           <div>
-            <p className="text-lg font-semibold">👨‍💼 Guide: </p>
-            <p className="text-sm ">📧 Email : </p>
+            <p className="text-lg font-semibold">👨‍💼 Guide: {user?.displayName}</p>
+            <p className="text-sm ">📧 Email : {user?.email}</p>
           </div>
         </div>
 

@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaBars, FaUser } from 'react-icons/fa'
 import { Link, NavLink } from 'react-router'
+import { AuthContext } from '../../provider/AuthContext'
 
 const Navbar = () => {
+
+	const {user} = useContext(AuthContext)
+	// console.log(user)
+	// console.log(user?.displayName)
+
   return (
     <header className="p-4 border-b">
 	<div className="container flex justify-between h-16 mx-auto">
@@ -29,10 +35,14 @@ const Navbar = () => {
 
 		</ul>
 		<div className="items-center flex-shrink-0 hidden lg:flex gap-5">
-			 <button className="self-center p-2 rounded-full bg-gray-500">
-        <Link to={'/dashboard'}> <FaUser className='text-2xl'/></Link>
-        
-      </button>
+			 <button >
+				<Link to={'/dashboard'} className=''> 
+				 {
+					user ? 
+					<img src={user?.photoURL} alt=""  className='w-10 h-10 self-center  rounded-full bg-gray-500'/> : <FaUser className='text-5xl self-center p-2 rounded-full bg-gray-500'/>
+				 }
+				</Link>
+            </button>
        
 			<button >
         <Link to={'/login'} className='self-center px-8 py-3 rounded bg-gray-500'>Sign in</Link>
