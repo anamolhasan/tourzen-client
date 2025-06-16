@@ -12,6 +12,9 @@ const DashboardAside = () => {
         📦 Manage My Packages
       </NavLink>
       <button className="btn-block bg-red-500 py-3 px-3 rounded-md">Log out</button>
+      <button className="btn-block bg-red-500 py-3 px-3 rounded-md">
+        dark mode
+      </button>
     </div>
   );
 };

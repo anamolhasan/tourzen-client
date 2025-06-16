@@ -1,12 +1,35 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaGithub, FaGoogle, FaTwitter } from 'react-icons/fa'
 import { Link } from 'react-router'
+import { toast } from 'react-toastify'
+import { AuthContext } from '../../provider/AuthContext'
 
 const Login = () => {
+
+	const {signInUser} = useContext(AuthContext)
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+
+		const from = e.target
+		const formData = new FormData(from)
+		const {email, password} = Object.fromEntries(formData.entries())
+		
+		 signInUser(email, password)
+      .then((result) => {
+        toast.success("লগইন সফল হয়েছে!");
+        // navigate(from, { replace: true });
+      })
+      .catch((error) => {
+         toast.error("লগইন ব্যর্থ", error);
+        // toast.error("লগইন ব্যর্থ! তথ্য যাচাই করুন।");
+      });
+	}
+
   return (
     <div className="w-full max-w-md mx-auto  my-24 p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-300">
 	<h1 className="text-2xl font-bold text-center">Sign In</h1>
-	<form noValidate="" action="" className="space-y-6">
+	<form onSubmit={handleSubmit} className="space-y-6">
     
 		<div className="space-y-1 text-sm">
 			<label htmlFor="email" className="block dark:text-gray-300">Email</label>
