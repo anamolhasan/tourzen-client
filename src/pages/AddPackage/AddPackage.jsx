@@ -1,17 +1,49 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../provider/AuthContext";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddPackage = () => {
 
   const {user} = useContext(AuthContext)
 
+  
   const handleSubmit = (e) => {
     e.preventDefault()
 
     const from = e.target
     const fromData = new FormData(from)
     const addPackage = Object.fromEntries(fromData.entries())
-    console.log(addPackage)
+    // console.log(addPackage)
+
+  const gideName = user?.displayName;
+  const gideEmail = user?.email;
+  const gidePhoto = user?.photoURL;
+
+  const finalPackage = {
+    ...addPackage,
+    gideName,
+    gideEmail,
+    gidePhoto,
+  };
+  console.log(finalPackage)
+
+  axios.post('http://localhost:3000/tours', finalPackage)
+     .then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your job has been and public",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
   }
   return (
     <div className="px-4 md:px-24 py-10 bg-white dark:bg-gray-600  text-black  min-h-screen">
@@ -38,7 +70,7 @@ const AddPackage = () => {
               name="photo"
               required
               className="input w-full bg-white dark:bg-gray-700 text-black dark:text-white"
-              placeholder="Images URL"
+              placeholder="Tour Image URL"
             />
           </fieldset>
 
@@ -47,6 +79,15 @@ const AddPackage = () => {
               type="text"
               name="duration"
               placeholder="Duration (e.g., 3 Days 2 Nights)"
+              className="input w-full bg-white dark:bg-gray-700 text-black dark:text-white"
+              required
+            />
+          </fieldset>
+
+           <fieldset className="bg-base-200 dark:bg-gray-800 border border-base-300 dark:border-gray-700 rounded-box p-4">
+            <input
+              type="date"
+              name="departureDate"
               className="input w-full bg-white dark:bg-gray-700 text-black dark:text-white"
               required
             />
@@ -81,14 +122,7 @@ const AddPackage = () => {
               required
             />
           </fieldset>
-          <fieldset className="bg-base-200 dark:bg-gray-800 border border-base-300 dark:border-gray-700 rounded-box p-4">
-            <input
-              type="date"
-              name="departureDate"
-              className="input w-full bg-white dark:bg-gray-700 text-black dark:text-white"
-              required
-            />
-          </fieldset>
+         
 
           <fieldset className="bg-base-200 dark:bg-gray-800 border border-base-300 dark:border-gray-700 rounded-box p-4">
             <input
