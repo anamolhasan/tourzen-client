@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
 import { FaGithub, FaGoogle, FaTwitter } from 'react-icons/fa'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { AuthContext } from '../../provider/AuthContext'
+import Swal from 'sweetalert2'
 
 const Register = () => {
 	const {createUser, updateUser, setUser} = useContext(AuthContext)
 
+	const navigate = useNavigate()
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -31,9 +33,22 @@ const Register = () => {
 					displayName:name || '',
 				    photoURL:photo || '',
 				})
+				 Swal.fire({
+					icon: 'success',
+					title: 'Your account is created.',
+					showConfirmButton: false,
+					timer: 1500,
+				})
+				navigate('/')
 			  })
 			  .catch(error => {
-				console.log("Profile update error:", error)
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: ("Profile update error:", error),
+					footer: '<a href="#">Why do I have this issue?</a>'
+					});
+				// console.log("Profile update error:", error)
 				setUser(newUser)
 			  })
 			
