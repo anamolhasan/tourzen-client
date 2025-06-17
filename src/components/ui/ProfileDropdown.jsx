@@ -1,18 +1,21 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router'; // ✅ Corrected import
+
+
 import { AuthContext } from '../../provider/AuthContext';
-import { FaUser } from 'react-icons/fa';
-// Optional icon:
-// import { FaChevronDown } from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa6';
+
+
 
 const ProfileDropdown = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logOutUser } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef();
+  // console.log(user)
 
-  const handleLogout = async () => {
-   
-  };
+ 
+
+
 
   // Click outside to close
   useEffect(() => {
@@ -33,12 +36,20 @@ const ProfileDropdown = () => {
         className="flex items-center gap-2"
       >
         
-        <img
-          src={user?.photoURL || <FaUser className='text-5xl self-center p-2 rounded-full bg-gray-500'/>}
-          alt="Profile"
-          className="w-10 h-10 rounded-full object-cover border"
-        />
-        {/* Optional icon: <FaChevronDown className="text-gray-600 dark:text-white" /> */}
+        {
+  user?.photoURL ? (
+    <img
+      src={user.photoURL}
+      alt={user.displayName || "Profile"}
+      className="w-10 h-10 rounded-full object-cover border"
+    />
+  ) : (
+    <FaUser className="w-10 h-10 p-2 rounded-full bg-gray-200 border text-white" />
+
+  )
+}
+
+
       </button>
 
       {isOpen && (
@@ -59,7 +70,7 @@ const ProfileDropdown = () => {
           </Link>
           <button
             onClick={() => {
-              handleLogout();
+              logOutUser();
               setIsOpen(false);
             }}
             className="w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900"

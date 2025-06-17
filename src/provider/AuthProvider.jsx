@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.init";
+import Swal from "sweetalert2";
 
 const AuthProvider = ({ children }) => {
 
@@ -35,14 +36,35 @@ const AuthProvider = ({ children }) => {
 
   // log out user
   const logOutUser = () => {
-     return signOut(auth)
+    //  return signOut(auth)
+     Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you really want to log out?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, log out!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          signOut(auth)
+            .then(() => {
+              Swal.fire('Logged out!', 'You have been successfully logged out.', 'success');
+            })
+            .catch((error) => {
+              console.error(error);
+              Swal.fire('Error!', 'Something went wrong while logging out!', 'error');
+            });
+        }
+      });
   }
 
 
   // set an authentication state observer and get user data
   useEffect(()=>{
-     const unsubscribe = onAuthStateChanged(auth, (createUser)=> {
-      setUser(createUser)
+     const unsubscribe = onAuthStateChanged(auth, (currentUser)=> {
+      setUser(currentUser)
+      // console.log(currentUser)
       setLoading(false)
      })
      return ()=> {
@@ -64,9 +86,9 @@ const AuthProvider = ({ children }) => {
   };
 
 
-  return <AuthContext value={userInfo}>
+  return <AuthContext.Provider value={userInfo}>
               {children}
-         </AuthContext>;
+         </AuthContext.Provider>;
 };
 
 export default AuthProvider;

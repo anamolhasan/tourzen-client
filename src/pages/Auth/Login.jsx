@@ -17,11 +17,11 @@ const Login = () => {
 		
 		 signInUser(email, password)
       .then((result) => {
-        toast.success("লগইন সফল হয়েছে!");
+        toast.success("লগইন সফল হয়েছে!" , result.user);
         // navigate(from, { replace: true });
       })
       .catch((error) => {
-         toast.error("লগইন ব্যর্থ", error);
+         toast.error("লগইন ব্যর্থ তথ্য যাচাই করুন", error);
         // toast.error("লগইন ব্যর্থ! তথ্য যাচাই করুন।");
       });
 	}
