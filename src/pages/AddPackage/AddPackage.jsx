@@ -26,7 +26,7 @@ const AddPackage = () => {
     gideEmail,
     gidePhoto,
   };
-  console.log(finalPackage)
+  // console.log(finalPackage)
 
   axios.post('http://localhost:3000/tours', finalPackage)
      .then((res) => {
