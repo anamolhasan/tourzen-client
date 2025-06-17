@@ -3,6 +3,7 @@ import { FaGithub, FaGoogle, FaTwitter } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router'
 import { AuthContext } from '../../provider/AuthContext'
 import Swal from 'sweetalert2'
+import SocialLogin from '../../components/ui/SocialLogin'
 
 const Register = () => {
 	const {createUser, updateUser, setUser} = useContext(AuthContext)
@@ -88,21 +89,11 @@ const Register = () => {
 	</form>
 
 	<div className="flex items-center pt-4 space-x-1">
-		<div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
-		<p className="px-3 text-sm dark:text-gray-300">Login with social accounts</p>
-		<div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
-	</div>
-	<div className="flex justify-center space-x-2 text-2xl">
-		<button aria-label="Log in with Google" className="p-3 rounded-sm">
-			<FaGoogle />
-		</button>
-		<button aria-label="Log in with Twitter" className="p-3 rounded-sm">
-			<FaTwitter />
-		</button>
-		<button aria-label="Log in with GitHub" className="p-3 rounded-sm">
-			<FaGithub />
-		</button>
-	</div>
+        
+      </div>
+      <div>
+		<SocialLogin />
+	  </div>
 	<p className="text-xs text-center sm:px-6 dark:text-gray-300 ">Al ready have an account? please
 		<Link to={'/login'}  className="underline dark:text-gray-300 pl-3">Sign in</Link>
 	</p>

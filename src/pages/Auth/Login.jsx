@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { FaGithub, FaGoogle, FaTwitter } from "react-icons/fa";
+
 import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../provider/AuthContext";
 import Swal from "sweetalert2";
+import SocialLogin from "../../components/ui/SocialLogin";
 
 const Login = () => {
   const { signInUser } = useContext(AuthContext);
@@ -75,23 +76,11 @@ const Login = () => {
         </button>
       </form>
       <div className="flex items-center pt-4 space-x-1">
-        <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
-        <p className="px-3 text-sm dark:text-gray-300">
-          Login with social accounts
-        </p>
-        <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
+        
       </div>
-      <div className="flex justify-center space-x-2 text-2xl">
-        <button aria-label="Log in with Google" className="p-3 rounded-sm">
-          <FaGoogle />
-        </button>
-        <button aria-label="Log in with Twitter" className="p-3 rounded-sm">
-          <FaTwitter />
-        </button>
-        <button aria-label="Log in with GitHub" className="p-3 rounded-sm">
-          <FaGithub />
-        </button>
-      </div>
+      <div>
+		<SocialLogin form={form}/>
+	  </div>
       <p className="text-xs text-center sm:px-6 dark:text-gray-300 ">
         Don't ready have an account? please
         <Link to={"/register"} className="underline dark:text-gray-300 pl-3">
