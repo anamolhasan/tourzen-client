@@ -1,6 +1,5 @@
-import { useContext } from 'react';
-import { useNavigate } from 'react-router';
-import { AuthContext } from '../../provider/AuthContext';
+import { Link } from "react-router";
+
 
 const PackageCard = ({ singlePackage }) => {
   const {
@@ -9,22 +8,14 @@ const PackageCard = ({ singlePackage }) => {
     photo,
     gideName,
     gidePhoto,
+    gideEmail,
     duration,
     price,
     departureDate,
   } = singlePackage;
-  console.log(name)
+  // console.log(name)
 
-  const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  const handleViewDetails = () => {
-    if (!user) {
-      navigate('/login');
-    } else {
-      navigate(`/package/${_id}`);
-    }
-  };
+ 
 
   return (
     <div className="bg-white dark:bg-gray-700 shadow-md rounded-lg overflow-hidden transition hover:shadow-xl">
@@ -40,7 +31,10 @@ const PackageCard = ({ singlePackage }) => {
             alt={gideName}
             className="w-10 h-10 rounded-full border-2 border-cyan-700"
           />
-          <p className="text-sm">👤 {gideName}</p>
+         <div>
+             <p className="text-lg font-bold">👤 {gideName}</p>
+              <p className="text-sm">📧 {gideEmail}</p>
+         </div>
         </div>
 
         {/* Package Info */}
@@ -48,12 +42,12 @@ const PackageCard = ({ singlePackage }) => {
         <p className="mb-1">💰 Price: ৳{price}</p>
         <p className="mb-3">📅 Departure: {departureDate}</p>
 
-        <button
-          onClick={handleViewDetails}
+        <Link to={`/details-package/${_id}`}
+          
           className="btn btn-primary w-full"
         >
           👁️ View Details
-        </button>
+        </Link>
       </div>
     </div>
   );

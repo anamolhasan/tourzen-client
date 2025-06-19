@@ -11,7 +11,10 @@ import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import AllPackages from "../pages/allPackages/AllPackages";
 import TourGide from "../pages/tourGide/TourGide";
-import MyBookings from "../pages/MyBookings/MyBookings";
+// import MyBookings from "../pages/MyBookings/MyBookings";
+import DetailsPackage from "../pages/detailsPackage/DetailsPackage";
+import Loading from "../components/shared/Loading";
+import MyBookingPackage from "../pages/MyBookings/MyBookingPackage";
 
 
 const router = createBrowserRouter([
@@ -31,8 +34,14 @@ const router = createBrowserRouter([
         Component: AllPackages
       },
       {
-        path: 'MyBookingsPackages',
-        Component: MyBookings
+        path: 'details-package/:id',
+        Component: DetailsPackage,
+        loader: ({params})=>fetch(`http://localhost:3000/tours/${params.id}`),
+        hydrateFallbackElement: <Loading />
+      },
+      {
+        path: 'MyBookingsPackages/:id',
+        Component: MyBookingPackage
       },
       {
         path: 'about',
