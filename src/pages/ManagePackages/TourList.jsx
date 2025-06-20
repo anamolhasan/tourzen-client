@@ -17,6 +17,7 @@ const TourList = ({ tourManagementByPromise }) => {
               <th>#</th>
               <th>Tour Name</th>
               <th>Job</th>
+              <th>Count</th>
               <th>Price</th>
               <th>Edit</th>
               <th>Delete</th>
@@ -29,9 +30,15 @@ const TourList = ({ tourManagementByPromise }) => {
               <tr key={tour._id}>
                 <th>{index + 1}</th>
                 <td>{tour.name}</td>
+              
                 <td>Quality Control Specialist</td>
+                <td>{tour.toursBooking_count}</td>
                 <td>{tour.price}</td>
-                <td ><FaRegEdit /></td>
+                <td >
+                  <Link to={`/dashboard/updateTour/${tour._id}`}>
+                    <FaRegEdit />
+                  </Link>
+                </td>
                 <td><MdDelete/></td>
                 <td><Link to={`/dashboard/viewTour/${tour._id}`}>view tour</Link></td>
               </tr>

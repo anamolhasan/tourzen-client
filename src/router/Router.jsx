@@ -17,6 +17,7 @@ import Loading from "../components/shared/Loading";
 import MyBookingPackage from "../pages/MyBookings/MyBookingPackage";
 import MyBookingsAllTours from "../pages/MyBookings/MyBookingsAllTours";
 import DetailsTour from "../pages/detailsTour/DetailsTour";
+import UpdateTour from "../pages/update/UpdateTour";
 
 
 const router = createBrowserRouter([
@@ -83,8 +84,14 @@ const router = createBrowserRouter([
         Component:ManagePackages
       },
       {
-        path:'viewTour/:id',
-        Component:DetailsTour
+        path:'updateTour/:id',
+        Component:UpdateTour,
+          loader: ({params})=>fetch(`http://localhost:3000/tours/${params.id}`)
+      },
+      {
+        path:'viewTour/:tour_Id',
+        Component:DetailsTour,
+        loader: ({params}) => fetch(`http://localhost:3000/myBookingTour/tours/${params.tour_Id}`)
       }
     ]
   },
