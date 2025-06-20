@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -7,13 +7,7 @@ import axios from "axios";
 const MyBookingPackage = ({setShowModal, tour}) => {
   const { id: jobId } = useParams();
   const { user } = useAuth();
-  // console.log(user);
-  // console.log(jobId);
-  //  const [showModal, setShowModal] = useState(false);
-  
-    // const [showModal, setShowModal] = useState(false);
-  
-    // console.log(tour)
+  const navigate = useNavigate()
   
     const handleBooking = async (e) => {
       e.preventDefault();
@@ -46,6 +40,7 @@ const MyBookingPackage = ({setShowModal, tour}) => {
             timer: 1500,
           });
         }
+        navigate('/all-package')
       })
       .catch((error) => {
         console.log(error);

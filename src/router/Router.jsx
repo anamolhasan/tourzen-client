@@ -15,6 +15,8 @@ import TourGide from "../pages/tourGide/TourGide";
 import DetailsPackage from "../pages/detailsPackage/DetailsPackage";
 import Loading from "../components/shared/Loading";
 import MyBookingPackage from "../pages/MyBookings/MyBookingPackage";
+import MyBookingsAllTours from "../pages/MyBookings/MyBookingsAllTours";
+import DetailsTour from "../pages/detailsTour/DetailsTour";
 
 
 const router = createBrowserRouter([
@@ -42,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: 'MyBookingsPackages/:id',
         Component: MyBookingPackage
+      },
+      {
+        path: 'MyBookingsAllTours',
+        Component: MyBookingsAllTours
       },
       {
         path: 'about',
@@ -75,6 +81,10 @@ const router = createBrowserRouter([
       {
         path:'managePackage',
         Component:ManagePackages
+      },
+      {
+        path:'viewTour/:id',
+        Component:DetailsTour
       }
     ]
   },
