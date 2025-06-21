@@ -18,7 +18,7 @@ const PackageCard = ({ singlePackage }) => {
  
 
   return (
-    <div className="bg-white dark:bg-gray-700 shadow-md rounded-lg overflow-hidden transition hover:shadow-xl">
+    <div className=" shadow-md rounded-lg overflow-hidden transition hover:shadow-xl">
       <img src={photo} alt={name} className="w-full h-48 object-cover" />
 
       <div className="p-4">

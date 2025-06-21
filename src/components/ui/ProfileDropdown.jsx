@@ -4,6 +4,7 @@ import { Link } from 'react-router'; // ✅ Corrected import
 
 import { AuthContext } from '../../provider/AuthContext';
 import { FaUser } from 'react-icons/fa6';
+import ThemeToggle from '../darkMode/ThemeToggle';
 
 
 
@@ -81,7 +82,7 @@ const ProfileDropdown = () => {
            
            
           >
-            🔓☀  Dark mode
+            <ThemeToggle />
           </button>
         </div>
       )}
