@@ -64,7 +64,7 @@ const Navbar = () => {
 
           <Link
             to={"/login"}
-            className="self-center px-8 py-3 rounded bg-gray-500"
+            className="self-center px-8 border py-3 rounded "
           >
             Sign in
           </Link>
