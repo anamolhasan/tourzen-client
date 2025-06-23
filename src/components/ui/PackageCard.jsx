@@ -1,7 +1,10 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import useAuth from "../../hooks/useAuth";
 
 
 const PackageCard = ({ singlePackage }) => {
+  const {user} = useAuth()
+  const navigate = useNavigate()
   const {
     _id,
     name,
@@ -13,9 +16,14 @@ const PackageCard = ({ singlePackage }) => {
     price,
     departureDate,
   } = singlePackage;
-  // console.log(name)
 
- 
+  const handleViewDetails = (id) => {
+    if(!user){
+      navigate('/login')
+    }else{
+      navigate(`/details-package/${id}`)
+    }
+  }
 
   return (
     <div className=" shadow-md rounded-lg overflow-hidden transition hover:shadow-xl">
@@ -31,10 +39,10 @@ const PackageCard = ({ singlePackage }) => {
             alt={gideName}
             className="w-10 h-10 rounded-full border-2 border-cyan-700"
           />
-         <div>
-             <p className="text-lg font-bold">👤 {gideName}</p>
-              <p className="text-sm">📧 {gideEmail}</p>
-         </div>
+          <div>
+            <p className="text-lg font-bold">👤 {gideName}</p>
+            <p className="text-sm">📧 {gideEmail}</p>
+          </div>
         </div>
 
         {/* Package Info */}
@@ -42,12 +50,9 @@ const PackageCard = ({ singlePackage }) => {
         <p className="mb-1">💰 Price: ৳{price}</p>
         <p className="mb-3">📅 Departure: {departureDate}</p>
 
-        <Link to={`/details-package/${_id}`}
-          
-          className="btn btn-primary w-full"
-        >
+        <button onClick={()=> handleViewDetails(_id)}  className="btn btn-primary w-full">
           👁️ View Details
-        </Link>
+        </button>
       </div>
     </div>
   );

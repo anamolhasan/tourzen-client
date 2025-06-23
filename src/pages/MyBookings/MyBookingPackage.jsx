@@ -20,18 +20,18 @@ const MyBookingPackage = ({setShowModal, tour}) => {
         price: tour.price,
         buyerName: user?.displayName,
         buyerEmail: user?.email,
-        bookingDate: new Date().toISOString(),
+        // bookingDate: new Date().toISOString(),
         specialNote,
         status: "pending"
       };
   
-     console.log(bookingData)
+    //  console.log(bookingData)
 
       axios
       .post("http://localhost:3000/myBookingTour", bookingData)
       .then((res) => {
-        console.log(res.data);
-        if (res.data.insertedId) {
+        // console.log(res.data);
+       if (res.data.insertedId || res.data.acknowledged) {
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -42,8 +42,12 @@ const MyBookingPackage = ({setShowModal, tour}) => {
         }
         navigate('/all-package')
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+       Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong while booking!",
+    });
       });
      
     };

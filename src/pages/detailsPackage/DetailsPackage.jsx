@@ -26,7 +26,7 @@ const DetailsPackage = () => {
         <p><strong>Contact:</strong> {tour.contactNo}</p>
         <p><strong>Duration:</strong> {tour.duration}</p>
         <p><strong>Price:</strong> ${tour.price}</p>
-        <p><strong>Bookings:</strong> {tour.bookingCount}</p>
+        <p><strong>Bookings:</strong> {tour.bookingCount || 0}</p>
         <p><strong>Departure:</strong> {tour.departureLocation} ({tour.departureDate})</p>
         <p><strong>Destination:</strong> {tour.destination}</p>
         <p className="mt-2"><strong>Description:</strong> {tour.packageDetails}</p>

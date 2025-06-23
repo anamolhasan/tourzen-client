@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../provider/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const AddPackage = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,10 +27,10 @@ const AddPackage = () => {
 
     axios
       .post("http://localhost:3000/tours", finalPackage, {
-    headers: {
-      authorization: `Bearer ${user.accessToken}`,
-    },
-  })
+        headers: {
+          authorization: `Bearer ${user.accessToken}`,
+        },
+      })
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
@@ -44,6 +46,17 @@ const AddPackage = () => {
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const handleaddTour = () => {
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Your package has been saved",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    navigate("/dashboard/managePackage");
   };
 
   return (
@@ -127,12 +140,18 @@ const AddPackage = () => {
             className="w-16 h-16 rounded-full border-2 border-cyan-900"
           />
           <div>
-            <p className="text-lg font-semibold">👨‍💼 Guide: {user?.displayName}</p>
+            <p className="text-lg font-semibold">
+              👨‍💼 Guide: {user?.displayName}
+            </p>
             <p className="text-sm">📧 Email: {user?.email}</p>
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary w-full py-3 text-xl">
+        <button
+          onClick={handleaddTour}
+          type="submit"
+          className="btn btn-primary w-full py-3 text-xl"
+        >
           📤 Submit Tour Package
         </button>
       </form>

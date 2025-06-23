@@ -9,7 +9,7 @@ import useBookingApi from "../../api/useBookingApi";
 
 const MyBookingsAllTours = () => {
   const {user} = useAuth()
-  console.log(user)
+  // console.log(user)
   const {myBookingAllTour} = useBookingApi()
   return (
     <div>

@@ -3,7 +3,7 @@ import BookingCard from './BookingCard';
 
 const MyTourCard = ({ myBookingAllTour }) => {
   const myTours = use(myBookingAllTour)
-  console.log(myTours)
+  // console.log(myTours)
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4">Total Tours: {myTours.length}</h2>

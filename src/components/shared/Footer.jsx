@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Logo + About */}
         <div>
-          <h2 className="text-2xl font-bold text-primary">TourZen</h2>
+          <Link to={'/'} className="text-2xl font-bold text-primary">TourZen</Link>
           <p className="mt-2 text-sm">
             Discover and book amazing local tour packages with us.
           </p>
@@ -45,7 +45,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <div className="text-center mt-10 border-t pt-6 text-sm">
-        © {new Date().getFullYear()} TourZen. All rights reserved.
+        ©  {new Date().getFullYear()} TourZen. All rights reserved.
       </div>
     </footer>
   );

@@ -5,7 +5,7 @@ const DetailsTour = () => {
     const {tour_Id} = useParams()
 
     const tours =  useLoaderData()
-    console.log(tours)
+   
   return (
     <div>
         <p>Tour Id : {tour_Id}</p>
