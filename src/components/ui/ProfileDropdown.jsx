@@ -1,24 +1,15 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router'; // ✅ Corrected import
-
-
+import { Link } from 'react-router';
 import { AuthContext } from '../../provider/AuthContext';
 import { FaUser } from 'react-icons/fa6';
 import ThemeToggle from '../darkMode/ThemeToggle';
-
-
 
 const ProfileDropdown = () => {
   const { user, logOutUser } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef();
-  // console.log(user)
 
- 
-
-
-
-  // Click outside to close
+  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -28,63 +19,54 @@ const ProfileDropdown = () => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-  
 
   return (
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2"
+        aria-haspopup="true"
+        aria-expanded={isOpen}
+        className="btn btn-ghost btn-circle avatar"
       >
-        
-        {
-  user?.photoURL ? (
-    <img
-      src={user.photoURL}
-      alt={user.displayName || "Profile"}
-      className="w-10 h-10 rounded-full object-cover border"
-    />
-  ) : (
-    <FaUser className="w-10 h-10 p-2 rounded-full bg-gray-200 border text-white" />
-
-  )
-}
-
-
+        {user?.photoURL ? (
+          <div className="w-10 rounded-full">
+            <img src={user.photoURL} alt={user.displayName || 'Profile'} />
+          </div>
+        ) : (
+          <FaUser className="w-10 h-10 p-2 rounded-full bg-base-200 text-base-content" />
+        )}
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 shadow-lg rounded-lg py-2 z-50">
-          <Link
-            to="/dashboard"
-            className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-            onClick={() => setIsOpen(false)}
-          >
-            ➕ Add Package
-          </Link>
-          <Link
-            to="/dashboard/managePackage"
-            className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-            onClick={() => setIsOpen(false)}
-          >
-            📦 Manage My Packages
-          </Link>
-          <button
-            onClick={() => {
-              logOutUser();
-              setIsOpen(false);
-            }}
-            className="w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900"
-          >
-            🔓 Logout
-          </button>
-          <div
-           
-           
-          >
+        <ul
+          tabIndex={0}
+          className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 right-0 absolute z-50"
+        >
+          <li>
+            <Link to="/dashboard" onClick={() => setIsOpen(false)}>
+              ➕ Add Package
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/managePackage" onClick={() => setIsOpen(false)}>
+              📦 Manage My Packages
+            </Link>
+          </li>
+          <li>
+            <button
+              onClick={() => {
+                logOutUser();
+                setIsOpen(false);
+              }}
+              className="text-error"
+            >
+              🔓 Logout
+            </button>
+          </li>
+          <li className="pt-2 border-t border-base-300">
             <ThemeToggle />
-          </div>
-        </div>
+          </li>
+        </ul>
       )}
     </div>
   );

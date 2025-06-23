@@ -36,8 +36,8 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-2">🌐 Follow Us</h3>
           <div className="flex gap-4 text-xl">
             <a href="https://www.facebook.com/"><FaFacebook className="hover:text-blue-600" /></a>
-            <a href="#"><FaTwitter className="hover:text-sky-400" /></a>
-            <a href="#"><FaInstagram className="hover:text-pink-500" /></a>
+            <a href="https://x.com/?lang=en"><FaTwitter className="hover:text-sky-400" /></a>
+            <a href="https://www.instagram.com/"><FaInstagram className="hover:text-pink-500" /></a>
             <a href="https://www.youtube.com/"><FaYoutube className="hover:text-red-600" /></a>
           </div>
         </div>

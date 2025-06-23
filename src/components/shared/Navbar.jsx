@@ -1,85 +1,149 @@
-import React, { useContext } from "react";
-import { FaBars, FaUser } from "react-icons/fa";
+import React, { useContext, useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../provider/AuthContext";
 import ProfileDropdown from "../ui/ProfileDropdown";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-  // console.log(user)
-  // console.log(user?.displayName)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header className="p-4 border-b">
-      <div className="container flex justify-between h-16 mx-auto">
+    <header className="p-4 border-b bg-gradient-to-r from-gray-500 via-gray-700 to-gray-400 sticky top-0 z-50 shadow-sm">
+      <div className="container mx-auto flex justify-between items-center h-16">
+        {/* Logo */}
         <Link
           to={"/"}
           aria-label="Back to homepage"
           className="flex items-center p-2 text-2xl font-bold"
+          onClick={() => setIsMenuOpen(false)} // close menu on nav link click
         >
           TOURZEN
         </Link>
-        <ul className="items-stretch hidden  lg:flex">
-          <li className="flex">
-            <NavLink to={"/"} className="flex items-center px-4 -mb-1  ">
-              Home
-            </NavLink>
-          </li>
-          <li className="flex">
-            <NavLink
-              to={"/all-package"}
-              className="flex items-center px-4 -mb-1 "
-            >
-              All Package
-            </NavLink>
-          </li>
-          <li className="flex">
-           {
-            user && <>
-             <NavLink
-              to={"/MyBookingsAllTours"}
-              className="flex items-center px-4 -mb-1 "
-            >
+
+        {/* Desktop Menu */}
+        <nav className="hidden lg:flex space-x-6">
+          <NavLink to={"/"} className="hover:text-blue-600" end>
+            Home
+          </NavLink>
+          <NavLink to={"/all-package"} className="hover:text-blue-600">
+            All Package
+          </NavLink>
+          {user && (
+            <NavLink to={"/MyBookingsAllTours"} className="hover:text-blue-600">
               My Tour
             </NavLink>
-            </>
-           }
-          </li>
-          <li className="flex">
-            <NavLink to={"/about"} className="flex items-center px-4 -mb-1 ">
-              About
-            </NavLink>
-          </li>
-          <li className="flex">
-            <NavLink
-              to={"/tour-gide"}
-              className="flex items-center px-4 -mb-1 "
-            >
-              Tour Gide
-            </NavLink>
-          </li>
-        </ul>
-        <div className="items-center flex-shrink-0 hidden lg:flex gap-5">
-          {
-			user ?  <ProfileDropdown /> 
-			 : 
-			 <>
-			  {user ? <ProfileDropdown /> : <ProfileDropdown />}
+          )}
+          <NavLink to={"/about"} className="hover:text-blue-600">
+            About
+          </NavLink>
+          <NavLink to={"/tour-gide"} className="hover:text-blue-600">
+            Tour Guide
+          </NavLink>
+        </nav>
 
-          <Link
-            to={"/login"}
-            className="self-center px-8 border py-3 rounded "
-          >
-            Sign in
-          </Link>
-			 </>
-		  }
+        {/* Desktop Auth Links */}
+        <div className="hidden lg:flex items-center gap-5">
+          {user ? (
+            <ProfileDropdown />
+
+          ) : (
+            <>
+              {user ? <ProfileDropdown /> : <ProfileDropdown />}
+            <Link
+              to={"/login"}
+              className="px-6 py-2 border rounded hover:bg-blue-600 hover:text-white transition"
+            >
+              Sign in
+            </Link>
+            </>
+          )}
         </div>
 
-        <button className="p-4 lg:hidden">
-          <FaBars />
+        {/* Mobile Hamburger Button */}
+        <button
+          className="lg:hidden p-2 text-2xl"
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <FaTimes /> : <FaBars />}
         </button>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <nav className="lg:hidden  border-t ">
+          <ul className="flex flex-col space-y-2 p-4">
+            <li>
+              <NavLink
+                to={"/"}
+                className="block"
+                onClick={() => setIsMenuOpen(false)}
+                end
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={"/all-package"}
+                className="block"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                All Package
+              </NavLink>
+            </li>
+
+
+            {user && (
+              <li>
+                <NavLink
+                  to={"/MyBookingsAllTours"}
+                  className="block"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  My Tour
+                </NavLink>
+              </li>
+            )}
+            <li>
+              <NavLink
+                to={"/about"}
+                className="block"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={"/tour-gide"}
+                className="block"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Tour Guide
+              </NavLink>
+            </li>
+
+            {/* Auth */}
+            <li>
+              {user ? (
+                <ProfileDropdown />
+              ) : (
+                <Link
+                  to={"/login"}
+                  className="block border rounded px-4 py-2 text-center"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Sign in
+                </Link>
+              )}
+            </li>
+          </ul>
+        </nav>
+      )}
     </header>
   );
 };
