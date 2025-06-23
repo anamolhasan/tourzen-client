@@ -19,6 +19,8 @@ import MyBookingsAllTours from "../pages/MyBookings/MyBookingsAllTours";
 import DetailsTour from "../pages/detailsTour/DetailsTour";
 import UpdateTour from "../pages/update/UpdateTour";
 import PrivateRouter from "../private/PrivateRouter";
+import Terms from "../pages/Trams&cndition/Terms";
+import Privacy from "../pages/Trams&cndition/Privacy";
 
 
 const router = createBrowserRouter([
@@ -68,6 +70,14 @@ const router = createBrowserRouter([
       {
         path: 'register',
         Component: Register
+      },
+      {
+        path: 'terms',
+        Component: Terms
+      },
+      {
+        path: 'privacy',
+        Component: Privacy
       }
     ]
   },
