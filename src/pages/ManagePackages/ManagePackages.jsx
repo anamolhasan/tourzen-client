@@ -1,25 +1,21 @@
-import React, { Suspense } from 'react'
-import TourList from './TourList'
-// import { tourCreatedByPromise } from '../../api/toursApi'
-// import { AuthContext } from '../../provider/AuthContext'
-import Loading from '../../components/shared/Loading'
-import useAuth from '../../hooks/useAuth'
-import { tourManagementByPromise } from '../../api/myManageAllTour'
+import React from "react";
+import TourList from "./TourList";
+import Loading from "../../components/shared/Loading";
+import useAuth from "../../hooks/useAuth";
+import useTourApi from "../../api/useTourApi";
 
 const ManagePackages = () => {
+  const { user, loading } = useAuth();
+  const { tourManagementByPromise } = useTourApi();
 
-   const {user} = useAuth()
+  if (loading) return <Loading />;
 
   return (
     <div>
-       <h2>My posted Tour</h2>
-       <Suspense fallback={<Loading />}>
-          <TourList 
-          tourManagementByPromise={tourManagementByPromise(user?.email)}
-          />
-       </Suspense>
+      <h2 className="text-3xl font-bold">My Posted Tours</h2>
+      <TourList tourManagementByPromise={tourManagementByPromise} email={user?.email} />
     </div>
-  )
-}
+  );
+};
 
-export default ManagePackages
+export default ManagePackages;

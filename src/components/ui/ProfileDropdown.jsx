@@ -78,12 +78,12 @@ const ProfileDropdown = () => {
           >
             🔓 Logout
           </button>
-          <button
+          <div
            
            
           >
             <ThemeToggle />
-          </button>
+          </div>
         </div>
       )}
     </div>

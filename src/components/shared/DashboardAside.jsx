@@ -19,16 +19,16 @@ const DashboardAside = () => {
       >
         📦 Manage My Packages
       </NavLink>
-      <button
+      <div
         onClick={logOutUser}
-        className="btn-block bg-red-500 py-3 px-3 rounded-md"
+        className="btn-block bg-red-500 py-3 px-3 rounded-md cursor-pointer"
       >
         Log out
-      </button>
+      </div>
 
-      <button className="btn-block bg-red-500  rounded-md">
+      <div className="btn-block bg-red-500  rounded-md cursor-pointer">
         <ThemeToggle />
-      </button>
+      </div>
     </div>
   );
 };

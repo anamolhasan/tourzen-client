@@ -5,7 +5,7 @@ const Carousel1 = () => {
   <div
   className="hero bg-cover bg-center text-white rounded-2xl"
   style={{
-    backgroundImage: "url('https://i.ibb.co/0j6Ls1rw/platt-hill.webp')",
+    backgroundImage: "url('https://i.ibb.co/SSCPjYT/Screenshot-4.png')",
     backgroundBlendMode: "multiply",
     backgroundColor: "rgba(0,0,0,0.5)",
   }}

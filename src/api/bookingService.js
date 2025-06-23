@@ -1,4 +1,8 @@
-export const myBookingAllTour = (email) => {
-   return fetch(`http://localhost:3000/myBookingTour?email=${email}`)
+export const myBookingAllTour = (email, accessToken) => {
+   return fetch(`http://localhost:3000/myBookingTour?email=${email}`, {
+      headers:{
+         authorization: `Bearer ${accessToken}`
+      }
+   })
       .then(res => res.json())
 }

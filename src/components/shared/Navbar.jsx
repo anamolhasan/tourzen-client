@@ -34,12 +34,16 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li className="flex">
-            <NavLink
+           {
+            user && <>
+             <NavLink
               to={"/MyBookingsAllTours"}
               className="flex items-center px-4 -mb-1 "
             >
               My Tour
             </NavLink>
+            </>
+           }
           </li>
           <li className="flex">
             <NavLink to={"/about"} className="flex items-center px-4 -mb-1 ">

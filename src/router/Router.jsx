@@ -18,6 +18,7 @@ import MyBookingPackage from "../pages/MyBookings/MyBookingPackage";
 import MyBookingsAllTours from "../pages/MyBookings/MyBookingsAllTours";
 import DetailsTour from "../pages/detailsTour/DetailsTour";
 import UpdateTour from "../pages/update/UpdateTour";
+import PrivateRouter from "../private/PrivateRouter";
 
 
 const router = createBrowserRouter([
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'details-package/:id',
-        Component: DetailsPackage,
+        Component:DetailsPackage,
         loader: ({params})=>fetch(`http://localhost:3000/tours/${params.id}`),
         hydrateFallbackElement: <Loading />
       },
@@ -48,7 +49,9 @@ const router = createBrowserRouter([
       },
       {
         path: 'MyBookingsAllTours',
-        Component: MyBookingsAllTours
+        element: <PrivateRouter>
+           <MyBookingsAllTours />
+        </PrivateRouter>
       },
       {
         path: 'about',
@@ -77,11 +80,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: AddPackage
+        element: <PrivateRouter>
+          <AddPackage />
+        </PrivateRouter>
       },
       {
         path:'managePackage',
-        Component:ManagePackages
+        element: <PrivateRouter>
+          <ManagePackages />
+        </PrivateRouter>
       },
       {
         path:'updateTour/:id',

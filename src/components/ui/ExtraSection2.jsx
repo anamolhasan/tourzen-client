@@ -1,7 +1,7 @@
 const ExtraSection2 = () => {
   const destinations = [
     { name: "Cox's Bazar", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb" },
-    { name: "Sundarbans", img: "https://images.unsplash.com/photo-1526779259212-4ff40b7a39d3" },
+    { name: "Sundarbans", img: "https://i.ibb.co/SSCPjYT/Screenshot-4.png" },
     { name: "Sylhet", img: "https://images.unsplash.com/photo-1500534623283-312aade485b7" },
     { name: "Bandarban", img: "https://images.unsplash.com/photo-1494526585095-c41746248156" },
   ];

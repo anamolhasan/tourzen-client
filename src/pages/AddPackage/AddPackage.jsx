@@ -24,7 +24,11 @@ const AddPackage = () => {
     };
 
     axios
-      .post("http://localhost:3000/tours", finalPackage)
+      .post("http://localhost:3000/tours", finalPackage, {
+    headers: {
+      authorization: `Bearer ${user.accessToken}`,
+    },
+  })
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({

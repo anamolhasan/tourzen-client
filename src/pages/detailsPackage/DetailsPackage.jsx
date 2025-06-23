@@ -1,12 +1,13 @@
-import { useLoaderData } from 'react-router';
+import {  useLoaderData, useNavigate } from 'react-router';
 import { useContext, useState } from 'react';
-import Swal from 'sweetalert2';
+
 import { AuthContext } from '../../provider/AuthContext';
 import MyBookingPackage from '../MyBookings/MyBookingPackage';
 
 const DetailsPackage = () => {
     const { user } = useContext(AuthContext);
     const tour = useLoaderData();
+    const navigate = useNavigate()
 
 
   const [showModal, setShowModal] = useState(false);
@@ -35,12 +36,16 @@ const DetailsPackage = () => {
         Book Now
       </button>
 
-      {showModal && (
+      {
+        user ? <>
+          {showModal &&  (
         <>
         <MyBookingPackage setShowModal={setShowModal} tour={tour}/>
         
         </>
       )}
+        </> : navigate('/login')
+      }
     </div>
   );
 };
