@@ -26,7 +26,7 @@ const AddPackage = () => {
     };
 
     axios
-      .post("http://localhost:3000/tours", finalPackage, {
+      .post("https://tour-zen-server-five.vercel.app/tours", finalPackage, {
         headers: {
           authorization: `Bearer ${user.accessToken}`,
         },

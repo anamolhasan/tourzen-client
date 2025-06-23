@@ -29,7 +29,7 @@ const handleSubmit = (e) => {
   };
 
   axios
-    .put(`http://localhost:3000/tours/${_id}`, finalPackage)
+    .put(`https://tour-zen-server-five.vercel.app/tours/${_id}`, finalPackage)
     .then((res) => {
       if (res.data.modifiedCount > 0) {
         Swal.fire({

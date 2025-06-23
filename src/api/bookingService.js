@@ -1,5 +1,5 @@
 export const myBookingAllTour = (email, accessToken) => {
-   return fetch(`http://localhost:3000/myBookingTour?email=${email}`, {
+   return fetch(`https://tour-zen-server-five.vercel.app/myBookingTour?email=${email}`, {
       headers:{
          authorization: `Bearer ${accessToken}`
       }

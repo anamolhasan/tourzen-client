@@ -7,7 +7,7 @@ const FeaturedPackages = () => {
 console.log(packages)
 
   useEffect(() => {
-    fetch("http://localhost:3000/tours")
+    fetch("https://tour-zen-server-five.vercel.app/tours")
       .then((res) => res.json())
       .then((data) => {
         const top6 = data.slice(0, 6);

@@ -1,4 +1,4 @@
-import {createBrowserRouter,} from "react-router";
+import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home/Home";
 import Dashboard from "../layouts/Dashboard";
@@ -22,10 +22,7 @@ import PrivateRouter from "../private/PrivateRouter";
 import Terms from "../pages/Trams&cndition/Terms";
 import Privacy from "../pages/Trams&cndition/Privacy";
 
-
 const router = createBrowserRouter([
-
-
   {
     path: "/",
     Component: MainLayout,
@@ -33,56 +30,59 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Home
+        Component: Home,
       },
       {
-        path: 'all-package',
-        Component: AllPackages
+        path: "all-package",
+        Component: AllPackages,
       },
       {
-        path: 'details-package/:id',
-        Component:DetailsPackage,
-        loader: ({params})=>fetch(`http://localhost:3000/tours/${params.id}`),
-        hydrateFallbackElement: <Loading />
+        path: "details-package/:id",
+        Component: DetailsPackage,
+        loader: ({ params }) =>
+          fetch(`https://tour-zen-server-five.vercel.app/tours/${params.id}`),
+        hydrateFallbackElement: <Loading />,
       },
       {
-        path: 'MyBookingsPackages/:id',
-        Component: MyBookingPackage
+        path: "MyBookingsPackages/:id",
+        Component: MyBookingPackage,
       },
       {
-        path: 'MyBookingsAllTours',
-        element: <PrivateRouter>
-           <MyBookingsAllTours />
-        </PrivateRouter>
+        path: "MyBookingsAllTours",
+        element: (
+          <PrivateRouter>
+            <MyBookingsAllTours />
+          </PrivateRouter>
+        ),
       },
       {
-        path: 'about',
-        Component: About
+        path: "about",
+        Component: About,
       },
       {
-        path: 'tour-gide',
-        Component: TourGide
+        path: "tour-gide",
+        Component: TourGide,
       },
       {
-        path: 'login',
-        Component: Login
+        path: "login",
+        Component: Login,
       },
       {
-        path: 'register',
-        Component: Register
+        path: "register",
+        Component: Register,
       },
       {
-        path: 'terms',
-        Component: Terms
+        path: "terms",
+        Component: Terms,
       },
       {
-        path: 'privacy',
-        Component: Privacy
-      }
-    ]
+        path: "privacy",
+        Component: Privacy,
+      },
+    ],
   },
 
-// --------------------------------------------------------
+  // --------------------------------------------------------
 
   {
     path: "/dashboard",
@@ -90,36 +90,38 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <PrivateRouter>
-          <AddPackage />
-        </PrivateRouter>
+        element: (
+          <PrivateRouter>
+            <AddPackage />
+          </PrivateRouter>
+        ),
       },
       {
-        path:'managePackage',
-        element: <PrivateRouter>
-          <ManagePackages />
-        </PrivateRouter>
+        path: "managePackage",
+        element: (
+          <PrivateRouter>
+            <ManagePackages />
+          </PrivateRouter>
+        ),
       },
       {
-        path:'updateTour/:id',
-        Component:UpdateTour,
-          loader: ({params})=>fetch(`http://localhost:3000/tours/${params.id}`)
+        path: "updateTour/:id",
+        Component: UpdateTour,
+        loader: ({ params }) =>
+          fetch(`https://tour-zen-server-five.vercel.app/tours/${params.id}`),
       },
       {
-        path:'viewTour/:tour_Id',
-        Component:DetailsTour,
-        loader: ({params}) => fetch(`http://localhost:3000/myBookingTour/tours/${params.tour_Id}`)
-      }
-    ]
+        path: "viewTour/:tour_Id",
+        Component: DetailsTour,
+        loader: ({ params }) =>
+          fetch(`https://tour-zen-server-five.vercel.app/myBookingTour/tours/${params.tour_Id}`),
+      },
+    ],
   },
   {
-    path:'/*',
-    Component:NotFound
-  }
-
-
-
+    path: "/*",
+    Component: NotFound,
+  },
 ]);
 
-
-export default router
+export default router;

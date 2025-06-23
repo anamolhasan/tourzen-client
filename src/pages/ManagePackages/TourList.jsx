@@ -24,7 +24,7 @@ const TourList = ({ tourManagementByPromise, email }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/tours/${_id}`, {
+        fetch(`https://tour-zen-server-five.vercel.app/tours/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

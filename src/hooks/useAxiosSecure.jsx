@@ -5,7 +5,7 @@ const useAxiosSecure = () => {
   const { user, logOutUser } = useAuth();
 
   const axiosSecure = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "https://tour-zen-server-five.vercel.app",
   });
 
   // Attach token to every request

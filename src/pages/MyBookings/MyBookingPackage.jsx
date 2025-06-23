@@ -28,7 +28,7 @@ const MyBookingPackage = ({setShowModal, tour}) => {
     //  console.log(bookingData)
 
       axios
-      .post("http://localhost:3000/myBookingTour", bookingData)
+      .post("https://tour-zen-server-five.vercel.app/myBookingTour", bookingData)
       .then((res) => {
         // console.log(res.data);
        if (res.data.insertedId || res.data.acknowledged) {
