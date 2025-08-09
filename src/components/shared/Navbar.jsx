@@ -3,7 +3,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../provider/AuthContext";
 import ProfileDropdown from "../ui/ProfileDropdown";
-
+ 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
