@@ -11,7 +11,7 @@ const SocialLogin = ({form}) => {
      const navigate = useNavigate()
 
     const handleGoogleSignIn = () => {
-        signInGoogle()
+        signInGoogle()  
         .then(result => {
             console.log(result)
             navigate(form || '/')
