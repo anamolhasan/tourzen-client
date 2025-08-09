@@ -4,6 +4,7 @@ import ExtraSection1 from '../../components/ui/ExtraSection1'
 import ExtraSection2 from '../../components/ui/ExtraSection2'
 import Banner from '../../components/ui/Banner'
 import ImageGallery from '../../components/ui/ImageGallery'
+import FAQSection from '../../components/ui/FAQSection'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <ExtraSection1 />
       <ExtraSection2 />
       <ImageGallery />
+      <FAQSection />
     </div>
   )
 }
