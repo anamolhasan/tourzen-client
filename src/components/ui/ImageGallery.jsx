@@ -56,7 +56,7 @@ const ImageGallery = () => {
                 e.stopPropagation();
                 prevImage();
               }}
-              className="absolute left-24 text-white text-4xl font-bold px-4 py-2 hover:text-gray-400 select-none"
+              className="absolute left-24 text-white text-4xl font-bold px-4 py-2 hover:text-gray-400 select-none border "
               aria-label="Previous Image"
             >
               ‹
@@ -74,7 +74,7 @@ const ImageGallery = () => {
                 e.stopPropagation();
                 nextImage();
               }}
-              className="absolute right-24 text-white text-4xl font-bold px-4 py-2 hover:text-gray-400 select-none"
+              className="absolute right-24 text-white text-4xl font-bold px-4 py-2 hover:text-gray-400 select-none border"
               aria-label="Next Image"
             >
               ›
@@ -85,7 +85,7 @@ const ImageGallery = () => {
                 e.stopPropagation();
                 setIsOpen(false);
               }}
-              className="absolute top-4 right-24 text-white text-3xl font-bold px-3 py-1 hover:text-gray-400"
+              className="absolute top-4 right-24 text-white text-3xl font-bold p-1 hover:text-gray-400"
               aria-label="Close Lightbox"
             >
               ×
