@@ -5,7 +5,7 @@ const useAxiosSecure = () => {
   const { user, logOutUser } = useAuth();
 
   const axiosSecure = axios.create({
-    baseURL: "https://tour-zen-server-five.vercel.app",
+    baseURL: `${import.meta.env.VITE_API_URL}`,
   });
 
   // Attach token to every request

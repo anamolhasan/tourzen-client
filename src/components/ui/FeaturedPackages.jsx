@@ -7,7 +7,7 @@ const FeaturedPackages = () => {
 console.log(packages)
 
   useEffect(() => {
-    fetch("https://tour-zen-server-five.vercel.app/tours")
+    fetch("${import.meta.env.VITE_API_URL}/tours")
       .then((res) => res.json())
       .then((data) => {
         const top6 = data.slice(0, 6);

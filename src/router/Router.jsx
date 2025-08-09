@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         path: "details-package/:id",
         Component: DetailsPackage,
         loader: ({ params }) =>
-          fetch(`https://tour-zen-server-five.vercel.app/tours/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/tours/${params.id}`),
         hydrateFallbackElement: <Loading />,
       },
       {
@@ -108,13 +108,13 @@ const router = createBrowserRouter([
         path: "updateTour/:id",
         Component: UpdateTour,
         loader: ({ params }) =>
-          fetch(`https://tour-zen-server-five.vercel.app/tours/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/tours/${params.id}`),
       },
       {
         path: "viewTour/:tour_Id",
         Component: DetailsTour,
         loader: ({ params }) =>
-          fetch(`https://tour-zen-server-five.vercel.app/myBookingTour/tours/${params.tour_Id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/myBookingTour/tours/${params.tour_Id}`),
       },
     ],
   },

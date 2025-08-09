@@ -7,7 +7,7 @@ const AllPackages = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetch("https://tour-zen-server-five.vercel.app/tours") // তোমার API URL
+    fetch(`${import.meta.env.VITE_API_URL}/tours`) // তোমার API URL
       .then((res) => res.json())
       .then((data) => {
         setAllTourPackage(data);

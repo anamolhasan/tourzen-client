@@ -1,5 +1,5 @@
 export const tourManagementByPromise = (email, accessToken) => {
-    return fetch(`https://tour-zen-server-five.vercel.app/tours/myBooking?email=${email}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/tours/myBooking?email=${email}`, {
         headers:{
             authorization: `Bearer ${accessToken}`
         }

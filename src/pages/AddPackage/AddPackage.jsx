@@ -26,7 +26,7 @@ const AddPackage = () => {
     };
 
     axios
-      .post("https://tour-zen-server-five.vercel.app/tours", finalPackage, {
+      .post("${import.meta.env.VITE_API_URL}/tours", finalPackage, {
         headers: {
           authorization: `Bearer ${user.accessToken}`,
         },

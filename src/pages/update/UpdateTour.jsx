@@ -29,7 +29,7 @@ const handleSubmit = (e) => {
   };
 
   axios
-    .put(`https://tour-zen-server-five.vercel.app/tours/${_id}`, finalPackage)
+    .put(`${import.meta.env.VITE_API_URL}/tours/${_id}`, finalPackage)
     .then((res) => {
       if (res.data.modifiedCount > 0) {
         Swal.fire({
