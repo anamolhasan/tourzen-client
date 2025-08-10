@@ -3,7 +3,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../provider/AuthContext";
 import ProfileDropdown from "../ui/ProfileDropdown";
- 
+
 const Navbar = () => {
   const { user } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,15 +32,20 @@ const Navbar = () => {
             All Package
           </NavLink>
           {user && (
-            <NavLink to={"/MyBookingsAllTours"} className="hover:text-blue-600">
-              My Tour
-            </NavLink>
+            <>
+              <NavLink
+                to={"/MyBookingsAllTours"}
+                className="hover:text-blue-600"
+              >
+                My Tour
+              </NavLink>
+              <NavLink to={"/tour-gide"} className="hover:text-blue-600">
+                Tour Guide
+              </NavLink>
+            </>
           )}
           <NavLink to={"/about"} className="hover:text-blue-600">
             About
-          </NavLink>
-          <NavLink to={"/tour-gide"} className="hover:text-blue-600">
-            Tour Guide
           </NavLink>
         </nav>
 
@@ -48,16 +53,15 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-5">
           {user ? (
             <ProfileDropdown />
-
           ) : (
             <>
               {user ? <ProfileDropdown /> : <ProfileDropdown />}
-            <Link
-              to={"/login"}
-              className="px-6 py-2 border rounded hover:bg-blue-600 hover:text-white transition"
-            >
-              Sign in
-            </Link>
+              <Link
+                to={"/login"}
+                className="px-6 py-2 border rounded hover:bg-blue-600 hover:text-white transition"
+              >
+                Sign in
+              </Link>
             </>
           )}
         </div>
@@ -95,7 +99,6 @@ const Navbar = () => {
                 All Package
               </NavLink>
             </li>
-
 
             {user && (
               <li>
