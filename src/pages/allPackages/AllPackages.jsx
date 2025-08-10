@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PackageCard from "../../components/ui/PackageCard";
+import Loading from "../../components/shared/Loading";
 
 const AllPackages = () => {
   const [allTourPackage, setAllTourPackage] = useState([]);
@@ -30,7 +31,7 @@ const AllPackages = () => {
   }
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   return (
