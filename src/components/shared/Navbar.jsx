@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <header className="p-4 border-b bg-gradient-to-r from-gray-500 via-gray-700 to-gray-400 sticky top-0 z-50 shadow-sm">
-      <div className="container mx-auto flex justify-between items-center h-16">
+      <div className="container mx-auto flex justify-between items-center ">
         {/* Logo */}
         <Link
           to={"/"}
