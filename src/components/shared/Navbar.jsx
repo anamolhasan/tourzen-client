@@ -11,20 +11,59 @@ const Navbar = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header className="p-4 border-b bg-gradient-to-r from-gray-500 via-gray-700 to-gray-400 sticky top-0 z-50 shadow-sm">
+    <header className="py-3 bg-gradient-to-r  sticky top-0 z-50 backdrop-blur-md ">
       <div className="container mx-auto flex justify-between items-center ">
         {/* Logo */}
         <Link
           to={"/"}
-          aria-label="Back to homepage"
-          className="flex items-center p-2 text-2xl font-bold"
-          onClick={() => setIsMenuOpen(false)} // close menu on nav link click
+          aria-label="TourZen — Back to homepage"
+          className="flex items-center gap-3 p-2 pr-4 rounded-full group hover:scale-105 transition-transform duration-200"
+          onClick={() => setIsMenuOpen(false)}
         >
-          TOURZEN
+          {/* Logo circle with subtle float + gradient */}
+          <span
+            className="relative flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-tr from-pink-400 via-amber-300 to-indigo-400 shadow-md 
+               ring-1 ring-white/20 overflow-hidden flex items-center justify-center transform transition-transform duration-300
+               group-hover:-translate-y-1"
+            aria-hidden="true"
+          >
+            {/* decorative sun/mountain SVG */}
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="drop-shadow-sm"
+              aria-hidden="true"
+            >
+              <path d="M3 17L9 9l4 6 3-4 5 6H3z" fill="white" opacity="0.92" />
+              <circle cx="17.5" cy="6.5" r="2" fill="rgba(255,255,255,0.9)" />
+            </svg>
+
+            {/* subtle pulse glow */}
+            <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-30 bg-white/20 animate-pulse"></span>
+          </span>
+
+          {/* Text block */}
+          <span className="flex flex-col leading-tight">
+            <span className="text-lg font-extrabold  tracking-wide">
+              <span className="text-indigo-600">TOUR</span>
+              <span className="">ZEN</span>
+            </span>
+
+            {/* small tagline */}
+            <span className="text-xs  -mt-0.5 hidden md:inline">
+              Explore. Book. Relax.
+            </span>
+          </span>
+
+          {/* Visually-hidden description for screen readers (optional extra) */}
+          <span className="sr-only">Go to homepage</span>
         </Link>
 
         {/* Desktop Menu */}
-        <nav className="hidden lg:flex space-x-6">
+        <nav className="hidden lg:flex space-x-16 font-bold bg-green-600/30 py-2 px-8 rounded-full">
           <NavLink to={"/"} className="hover:text-blue-600" end>
             Home
           </NavLink>
